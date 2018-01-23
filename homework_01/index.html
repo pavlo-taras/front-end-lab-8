@@ -12,10 +12,134 @@
     <div id="main">
       <div id="container">
         <div id="content" role="main">
-          <!-- TODO: Content goes here -->
+          <div id="#header">
+            <img src="EPAM_logo.svg" alt="No Image">
+          </div>
+          <nav>
+              <a href="#html">HTML</a>
+              <a href="#list">List</a>
+              <a href="#table">Table</a>
+              <a href="#formats">Text formats</a>
+              <a href="#blockquotes">Blockquotes</a>
+          </nav>
+          <hr>
+          <p>
+            <h1><strong>
+              HTML Elements
+            </strong></h1>
+          </p>
+          <hr>
+          <div>
+            <h2>Ordered List</h2>
+            <ul>
+              <li><h1>Heading 1</h1></li>
+              <ul><li><h2>Heading 2</h2></li></ul>
+              <ul><ul><li><h3>Heading 3</h3></li></ul></ul>
+            </ul>
+            <ol>
+              <li><h4>Heading 4</h4></li>
+              <ol><li><h5>Heading 5</h5></li></ol>
+              <ol><ol><li><h6>Heading 6</h6></li></ol></ol>
+            </ol>
+          </div>
+          <div>
+            <h3>Definition List</h3>
+            <dl>
+              <dt>defines terms 1</dt>
+              <dd>description 1</dd>
+              <dt>defines terms 2</dt>
+              <dd>description 2</dd>
+            </dl>
+          </div>
+          <div>
+            <h2>Details</h2>
+            <p>▼Even more details open
+              <span><br>Here are even more details about the details.</span>
+            </p>
+            
+            <p>►Even more details close
+              <span class="nocomments"><br>Here are even more details about the details.</span>
+            </p>
+          </div>
+          <hr>
+          <div id="table">
+            <h2>Table</h2>
+            <table>
+              <thead>
+                <tr>
+                  <td>Elements</td>
+                  <td>Elements</td>
+                  <td>Elements</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>strong</strong></td>
+                  <td>H<sub>2</sub>O</td>
+                  <td><a>test link</a></td>
+                </tr>
+                <tr>
+                  <td><i>Italic</i></td>
+                  <td><u>Underline.</u></td>
+                  <td><del>delete</del></td>
+                </tr>
+                <tr>
+                    <td><abbr>Abbreviation</abbr></td>
+                    <td>5<sup>3</sup>=125</td>
+                    <td><ins>inserted</ins></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <hr>
+          <div id="formats">
+            <h2>Text formats</h2>
+            
+            <p>Article Text</p>
+            <article>
+              <p><big>Article title</big></p>
+              <p><small>Article description</small></p>
+            </article>
+          </div>
+          <div>
+            <h3>Preformatted Text</h3>
+            <pre>
+Text
+  in a pre element
+    is displayed in a fixed-width
+font, and it preserves
+both           spaces and
+    line breaks
+            </pre>
+          </div>
+          <div>
+            <h3>Code</h3>
+            <code><pre>
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+            </pre></code>
+          </div>
+          <hr>
+          <div id="blockquotes">
+            <h2>Blockquotes</h2>
+            <p>Let’s keep it simple. Italics are good to help set it off from the body text. Be sure to style the citation.</p>
+            <blockquote>
+              Technology is nothing. What's important is that you have a faith in people, that they're basically good and smart, and if you give them tools, they'll do wonderful things with them.<br>
+              <city><a href="https://en.wikipedia.org/wiki/Steve_Jobs">Steve Jobs</a></city>
+            </blockquote>
+          </div>
+          <footer>
+              Copyright Epam Systems
+          </footer>
         </div>
       </div>
-    </div>
+    </div>    
   </div>
 </body>
 
