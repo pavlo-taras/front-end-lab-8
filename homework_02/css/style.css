@@ -45,3 +45,15 @@ write your code here
         max-width: none;
     }
 }
+
+
+@media screen {
+    /* Task 2 */
+    #about ul li.box:nth-child(3n+1), #about ul li.box:nth-child(3n+2) {
+        border-right: 0px!important;
+    }
+
+    #about ul li.box:nth-child(-n+6) {
+        border-bottom: 0px!important;
+    }
+}
