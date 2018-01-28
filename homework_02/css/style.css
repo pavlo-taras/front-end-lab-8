@@ -141,4 +141,9 @@ write your code here
     .tm-sidebar .tm-nav-item:not(:last-child) {
         border-bottom: 1px solid silver;
     }
+
+    /* Task 12 */
+    .contact-form input[type="text"], .contact-form button[type="submit"] {
+        color: red;
+    }
 }
