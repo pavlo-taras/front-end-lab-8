@@ -72,4 +72,10 @@ write your code here
     .gallery-container a img {
         border: 2px solid silver;
     }
+
+    /* Task 6 */
+    #tmCarousel .carousel-inner > div:first-child .tm-section-title {
+        color: gainsboro;
+        letter-spacing: 5px;
+    }
 }
