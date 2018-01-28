@@ -78,4 +78,9 @@ write your code here
         color: gainsboro;
         letter-spacing: 5px;
     }
+
+    /* Task 7 */
+    h2 + p {
+        font-style: italic;
+    }
 }
