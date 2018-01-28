@@ -67,4 +67,9 @@ write your code here
     .tm-sidebar, .tm-main-content section {
         box-shadow: 0 0 10px #000000;
     }
+
+    /* Task 5 */
+    .gallery-container a img {
+        border: 2px solid silver;
+    }
 }
