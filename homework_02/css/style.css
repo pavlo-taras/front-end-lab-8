@@ -83,4 +83,10 @@ write your code here
     h2 + p {
         font-style: italic;
     }
+
+    /* Task 8 */
+    .tm-main-content section:nth-child(2) p {
+        text-indent: 1.5em;
+        line-height: 25px;
+    }
 }
