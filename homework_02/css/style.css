@@ -62,4 +62,9 @@ write your code here
         color: #76cdd7;
         font-size: 30px;
     }
+
+    /* Task 4 */
+    .tm-sidebar, .tm-main-content section {
+        box-shadow: 0 0 10px #000000;
+    }
 }
