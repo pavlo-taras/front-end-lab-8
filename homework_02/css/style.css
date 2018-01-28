@@ -89,4 +89,30 @@ write your code here
         text-indent: 1.5em;
         line-height: 25px;
     }
+
+    /* Task 9 */
+    .heading h2 {
+        color: #76cdd8;
+        text-align: center;
+    }
+
+    .heading a {
+        color: #000000;
+    }
+
+    .heading a.text::after {
+        content: "New";
+        color: red;
+        font-size: 10px;
+        vertical-align: top;
+    }
+
+    .heading a:visited {
+        color: silver;
+    }
+
+    .heading a:hover {
+        color: #76cdd6;
+    }
+
 }
