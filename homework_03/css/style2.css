@@ -45,3 +45,28 @@
     #content table td {
       border: 0px;
       border-bottom: 1px solid #94a34e; }
+  #content form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+    #content form div label {
+      display: block;
+      color: #f5c70f;
+      text-transform: uppercase; }
+    #content form div.input1 {
+      padding-bottom: 1rem;
+      width: 100%; }
+    #content form div.input2 {
+      width: calc((100% - 10px) / 2); }
+    #content form div input, #content form div textarea {
+      border: 1px solid #f5c70f;
+      width: 100%; }
+    #content form button {
+      width: 200px;
+      color: #f5c70f;
+      border: 1px solid #f5c70f;
+      text-align: center;
+      padding: 10px;
+      background-color: inherit;
+      text-transform: uppercase;
+      font-size: 18px; }

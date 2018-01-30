@@ -123,7 +123,30 @@
     <p>Серед відомих бібліотек Львова — Бібліотека Львівського університету, Міська центральна бібліотека імені Лесі Українки,
       Центральна міська дитяча бібліотека, Обласна бібліотека для дітей, Обласна бібліотека для юнацтва та інші.</p>
     <div>
-      <!--TODO write form fields-->
+        <h2>Залишити відгук</h2>
+        <form action="#review" method="get" class="review-form">
+          <div class="input1 input2">
+            <label for="first-name">Імя</label>
+            <input type="text" id="first-name" name="first-name" class="form-review" placeholder="Введіть імя" required/>
+          </div>
+          <div class="input1 input2">
+            <label for="last-name">Прізвище</label>
+            <input type="text" id="last-name" name="last-name" class="form-review" placeholder="Введіть прізвище" required/>
+          </div>
+          <div class="input1">
+            <label for="review-email">Імейл</label>
+            <input type="email" id="review-email" name="review-email" class="form-review" placeholder="Ввведіть імейл" required/>
+          </div>
+          <div class="input1">
+            <label for="review-rate">Оцініть</label>
+            <input type="text" id="review-rate" name="review-rate" class="form-review" placeholder="" required/>
+          </div>
+          <div class="input1">
+            <label for="review-email">Напишіть відгук</label>
+            <textarea id="rate_message" name="rate_message" class="form-review" rows="9" placeholder="залишити відгук" required></textarea>
+          </div>       
+          <button type="submit" class="submit-btn">Надіслати</button>
+        </form>
     </div>
   </div>
 </body>
