@@ -1,0 +1,22 @@
+$design: 1;
+
+// colors
+$color-black: #000000;
+$color-shade-blue: #3d70a1;
+$color-shade-gray: #808080;
+
+$content-background: #ffffff;
+$content-color: $color-black; 
+$titles-color: #893c00;
+$a-color: $color-shade-blue;
+$brief-background: #dcbb9a;
+$brief-color: $color-black;
+
+$h1-text-transform: none;
+
+// table
+$table-border: $color-shade-gray;
+$table-background: inherit;
+$caption-color: $color-black;
+$text-transform-uppercase: uppercase;
+$th-text-transform: $text-transform-uppercase;

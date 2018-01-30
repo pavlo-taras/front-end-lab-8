@@ -1,0 +1,21 @@
+$design: 2;
+
+// colors
+$color-black: #000000;
+$color-shade-orange: #f5c70f;
+
+$content-background:  #3b3b3b;
+$content-color: #ffffff; 
+$titles-color: $color-shade-orange;
+$a-color: #fccd10;
+$brief-background: #fff178;
+$brief-color: $color-black;
+
+$text-transform-uppercase: uppercase;
+$h1-text-transform: $text-transform-uppercase;
+
+// table
+$table-border: #94a34e;
+$table-background: #677d01;
+$caption-color: $color-black;
+$th-text-transform: $text-transform-uppercase;
