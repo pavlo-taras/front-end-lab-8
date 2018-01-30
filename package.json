@@ -1,0 +1,25 @@
+{
+  "name": "front-end-lab-8",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "nodemon": "^1.14.11",
+    "node-sass": "^4.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --include-path scss homework_03/scss/_main.scss   homework_03/css/style1.css  && node-sass --include-path scss homework_03/scss/_main.scss   homework_03/css/style2.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavlo-taras/front-end-lab-8.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pavlo-taras/front-end-lab-8/issues"
+  },
+  "homepage": "https://github.com/pavlo-taras/front-end-lab-8#readme"
+}
