@@ -3,3 +3,13 @@
 
 # file textedior
 .vscode/*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Sass directory and files
+.sass-cache/
+*.css.map
