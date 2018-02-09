@@ -18,7 +18,7 @@ if (!isCorrectAmountUSD)  console.log("Incorect data dollar")
 if (isCorrectAmountEURO && isCorrectAmountUSD) {
     let rateEuroDollar = currencies.euro / currencies.dollar;
 
-    console.log(`${amountEURO} euros are equal ${(amountEURO * currencies.euro).toFixed(2)} UAH, ` +
-        `${amountUSD} euros are equal ${(amountUSD * currencies.dollar).toFixed(2)} UAH, ` +
+    console.log(`${amountEURO} euro${(amountEURO == 1) ? "" : "s"} are equal ${parseFloat((amountEURO * currencies.euro).toFixed(2))} UAH, ` +
+        `${amountUSD} dollar${(amountUSD == 1) ? "" : "s"} are equal ${parseFloat((amountUSD * currencies.dollar).toFixed(2))} UAH, ` +
         `one euro is qual ${(currencies.euro / currencies.dollar).toFixed(4)} dollars.`)
 }
