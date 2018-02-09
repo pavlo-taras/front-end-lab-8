@@ -40,7 +40,7 @@ if (a && b && c) {
             type = "isosceles"
         }
 
-        console.log(`Type of triangle is ${type} and square is ${s.toFixed(2)}`)    
+        console.log(`Type of triangle is ${type} and square is ${parseFloat(s.toFixed(2))}`)    
     } else {
         console.log("Incorrect data")
     }
