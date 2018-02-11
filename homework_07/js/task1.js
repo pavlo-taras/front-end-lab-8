@@ -14,5 +14,5 @@ if (fromNum <= num && num <= toNum && num === parseInt(num)) {
 
     console.log(str)
 } else {
-  console.log("Incorrect!")
+  console.error("Incorrect!")
 }
