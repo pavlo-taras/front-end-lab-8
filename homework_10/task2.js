@@ -33,34 +33,42 @@ function showResult(fighter) {
   
 const fighter = (obj) => {
 
-    let wins = 0
-    let loses = 0
-
     return {
-        getName: () => {
-            return obj.name
+        CombatHistory: {wins: 0, loses: 0},
+
+        Stats: obj,
+
+        getName() {
+            return this.Stats.name
         },
 
-        getCombatHistory: () => {
-            return {wins, loses}
+        getCombatHistory() {
+            return this.CombatHistory
         },
 
-        getStats: () => {
-            return obj
+        getStats() {
+            return this.Stats
         },
 
-        block: () => {
+        block() {
             return Math.random() >= 0.5
         },
 
-        fight: (fighter) => {
-            console.log(fighter)
-            if (obj.attack < fighter.attack) {
-                wins++
-                fighter.hp -= obj.hp
-            }
+        fight(fighter) {
+            
+            if (!fighter.block() && this.Stats.attack > fighter.Stats.attack) {
+                fighter.Stats.hp -= this.Stats.hp
 
-            console.log('fighter')
+                if (fighter.Stats.hp <= 0) {
+                    fighter.Stats.hp = 0
+                    fighter.CombatHistory.loses++
+                    this.CombatHistory.wins++
+                }
+
+                return true
+            }
+            
+            return false
         }
     }
 }
@@ -69,30 +77,30 @@ const fighter = (obj) => {
  * The following code must be valid after implementation!
  */ 
 
-//var fighter1 = fighter({name: 'John', attack: 100, hp: 100});
-//var fighter2 = fighter({name: 'Kayn', attack: 50, hp: 300});
-//var fighter3 = fighter({name: 'Bill', attack: 40, hp: 100});
+var fighter1 = fighter({name: 'John', attack: 100, hp: 100});
+var fighter2 = fighter({name: 'Kayn', attack: 50, hp: 300});
+var fighter3 = fighter({name: 'Bill', attack: 40, hp: 100});
 
-//fighter1.fight(fighter2); // true, fighter 1 make damage to fighter 2
-//fighter1.fight(fighter3); // true, fighter 1 make damage to fighter 3
+fighter1.fight(fighter2); // true, fighter 1 make damage to fighter 2
+fighter1.fight(fighter3); // true, fighter 1 make damage to fighter 3
 
 // /**
 //  * Fighter John
 //  * - Combat stats: { wins: 1, loses: 0 }
 //  * - Properties: { name: 'John', attack: 100, hp: 100 }
 //  */
-//showResult(fighter1);
+showResult(fighter1);
 
 // /** Fighter Kayn
 //  * - Combat stats: { wins: 0, loses: 0 }
 //  * - Properties: { name: 'Kayn', attack: 50, hp: 200 }
 //  */
-//showResult(fighter2); 
+showResult(fighter2); 
 
 // /**
 //  * Fighter Bill
 //  * - Combat stats: { wins: 0, loses: 1 }
 //  * - Properties: { name: 'Bill', attack: 40, hp: 0 }
 //  */
-//showResult(fighter3);
+showResult(fighter3);
   
