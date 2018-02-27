@@ -1,0 +1,29 @@
+li {
+    list-style-type: none;
+}
+
+li.folder > div {
+    color: orange;
+}
+
+li.file > div {
+    color: gray;
+}
+
+li > div:hover {
+    background-color:  #f5f5f5;
+}
+
+li div a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.visible {
+    display: block;
+}
+
+.invisible {
+    display: none;
+}
