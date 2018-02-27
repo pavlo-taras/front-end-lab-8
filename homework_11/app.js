@@ -25,8 +25,18 @@ function addChildren(structure) {
         
         $ul.appendChild($li)
 
-        if (item.children) {
-            $subUl = addChildren(item.children)
+        if (item.folder) {
+            let $subUl
+            
+            if (item.children) {
+                $subUl = addChildren(item.children)
+            } else {
+                $subUl = document.createElement('ul')
+                let $li = document.createElement('li')
+                $subUl.appendChild($li)
+                $li.append('Folder is empty')
+            }
+
             $subUl.setAttribute("hidden", "hidden")
             $li.appendChild($subUl)
         }
