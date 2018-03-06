@@ -16,7 +16,7 @@ const createNewElement = (tag) => {
 }
 
 
-const createThumbnailsPage = (tagPage, tanks) => {
+const createThumbnailsPage = (tagPage, arrTanks) => {
     let h2 = createNewElement('h2')
     tagPage.appendChild(h2)
     h2.textContent = "Most popular tanks"
@@ -24,31 +24,35 @@ const createThumbnailsPage = (tagPage, tanks) => {
     let main = createNewElement('main')
     tagPage.appendChild(main)
 
-    for (let i = 0; i < tanks.length; i++ ) {
-        let tank = tanks[i]
+    for (let i = 0; i < arrTanks.length; i++ ) {
+        let tank = arrTanks[i]
+
+        let aTank = createNewElement('a')
+        main.appendChild(aTank)
+        aTank.setAttribute("href", "#" + tank.model.toLowerCase().replace(/\s/g, '-'))
 
         let divTank = createNewElement('div')
-        main.appendChild(divTank)
+        aTank.appendChild(divTank)
         divTank.className = "tank"
 
-        let img = createElement('img')
+        let img = createNewElement('img')
         divTank.appendChild(img)
         img.src = tank.preview
         img.className = "img-tank"
 
-        let divData = createElement('div')
+        let divData = createNewElement('div')
         divTank.appendChild(divData)
 
-        let imgCountry = createElement('img')
+        let imgCountry = createNewElement('img')
         divData.appendChild(imgCountry)
-        img.setAttribute("src", tank.country_image)
-        img.setAttribute("alt", tank.country)
+        imgCountry.setAttribute("src", tank.country_image)
+        imgCountry.setAttribute("alt", tank.country)
 
-        let level = createElement('span')
+        let level = createNewElement('span')
         divData.appendChild(level)
         level.textContent = tank.level
 
-        let model = createElement('span')
+        let model = createNewElement('span')
         divData.appendChild(model)
         model.textContent = tank.model
     }
@@ -56,7 +60,6 @@ const createThumbnailsPage = (tagPage, tanks) => {
 
 
 const createTankDetailsPage = (tagPage, objTank) => {
-    console.log("tank = ", objTank)
     let header = createNewElement('h2')
 
     header.textContent = objTank.model
@@ -89,7 +92,6 @@ const createTankDetailsPage = (tagPage, objTank) => {
     right.appendChild(table)
 
     for (var item in objTank.details) {
-        console.log('item = ', item)
         let tr = createNewElement('tr')
         table.appendChild(tr)
 
@@ -107,5 +109,9 @@ const createTankDetailsPage = (tagPage, objTank) => {
     footer.setAttribute('href', '#')
 }
 
-createThumbnailsPage(divPreview)
-createTankDetailsPage(divDetails, tanks[1])
+createThumbnailsPage(divPreview, tanks)
+createTankDetailsPage(divDetails, tanks[0])
+
+window.addEventListener('hashchange', function(e) {
+  // Logic for choose one tank
+});
