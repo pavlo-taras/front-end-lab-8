@@ -3,6 +3,7 @@ let idRoot = document.querySelector('#root')
 
 let divPreview = document.createElement('div')
 idRoot.appendChild(divPreview)
+divPreview.className = "tanks-preview"
 
 let divDetails = document.createElement('div')
 idRoot.appendChild(divDetails)
@@ -15,6 +16,7 @@ const createNewElement = (tag) => {
     return element
 }
 
+const modifyTankName = (name) => name.toLowerCase().replace(/\s/g, '-')
 
 const createThumbnailsPage = (tagPage, arrTanks) => {
     let h2 = createNewElement('h2')
@@ -29,47 +31,53 @@ const createThumbnailsPage = (tagPage, arrTanks) => {
 
         let aTank = createNewElement('a')
         main.appendChild(aTank)
-        aTank.setAttribute("href", "#" + tank.model.toLowerCase().replace(/\s/g, '-'))
+        aTank.setAttribute("href", "#" + modifyTankName(tank.model))
+        aTank.className = "tank"
 
         let divTank = createNewElement('div')
         aTank.appendChild(divTank)
-        divTank.className = "tank"
 
         let img = createNewElement('img')
         divTank.appendChild(img)
         img.src = tank.preview
         img.className = "img-tank"
 
-        let divData = createNewElement('div')
-        divTank.appendChild(divData)
+        let divShortDescribe = createNewElement('div')
+        divTank.appendChild(divShortDescribe)
+        divShortDescribe.className = 'short-detail'
 
         let imgCountry = createNewElement('img')
-        divData.appendChild(imgCountry)
+        divShortDescribe.appendChild(imgCountry)
+        imgCountry.className = "country"
         imgCountry.setAttribute("src", tank.country_image)
         imgCountry.setAttribute("alt", tank.country)
 
         let level = createNewElement('span')
-        divData.appendChild(level)
+        divShortDescribe.appendChild(level)
         level.textContent = tank.level
 
         let model = createNewElement('span')
-        divData.appendChild(model)
+        divShortDescribe.appendChild(model)
         model.textContent = tank.model
     }
 }
 
 
 const createTankDetailsPage = (tagPage, objTank) => {
+    let tankDetail = createNewElement('div')
+    tagPage.appendChild(tankDetail)
+    tankDetail.setAttribute("data-name", modifyTankName(objTank.model))
+
     let header = createNewElement('h2')
 
     header.textContent = objTank.model
-    tagPage.appendChild(header)
+    tankDetail.appendChild(header)
 
-    let main = createNewElement('main')
-    tagPage.appendChild(main)
+    let divMain = createNewElement('div')
+    tankDetail.appendChild(divMain)
 
     let left = createNewElement('div')
-    main.appendChild(left)
+    divMain.appendChild(left)
     left.className = "left"
 
     let previewText = createNewElement('span')
@@ -77,12 +85,11 @@ const createTankDetailsPage = (tagPage, objTank) => {
     left.appendChild(previewText)
 
     let imgTank = createNewElement('img')
-    console.log(imgTank)
     imgTank.setAttribute('src', objTank.preview)
     left.appendChild(imgTank)
 
     let right = createNewElement('div')
-    main.appendChild(right)
+    divMain.appendChild(right)
 
     let characteristic = createNewElement('span')
     characteristic.textContent = "Characteristic"
@@ -104,14 +111,49 @@ const createTankDetailsPage = (tagPage, objTank) => {
     }
 
     let footer = createNewElement('a')
-    tagPage.appendChild(footer)
+    tankDetail.appendChild(footer)
     footer.textContent = "Back to list view"
     footer.setAttribute('href', '#')
 }
 
-createThumbnailsPage(divPreview, tanks)
-createTankDetailsPage(divDetails, tanks[0])
+const hiddenTankDetails = (currentTankName) => {
+    let $allTankDetails = document.querySelectorAll(".tank-details > div")
+
+    for (let i = 0; i < $allTankDetails.length; i++) {
+        $allTankDetails[i].setAttribute('hidden', "hidden")
+    }
+
+    if (currentTankName) {
+        let $currentTankDetail = document.querySelector(`[data-name=${currentTankName}]`)
+
+        $currentTankDetail.removeAttribute("hidden")
+    } 
+}
 
 window.addEventListener('hashchange', function(e) {
-  // Logic for choose one tank
+    run(location.hash.slice(1))
 });
+
+
+function run(hash) {
+
+    if (!hash) {
+        document.querySelector(".tanks-preview").removeAttribute("hidden")
+        hiddenTankDetails()
+    } else {
+        document.querySelector(".tanks-preview").setAttribute("hidden", true)
+
+        hiddenTankDetails(hash)
+    }
+}
+
+(function() {
+    createThumbnailsPage(divPreview, tanks)
+
+    tanks.forEach(function(tank) {
+        createTankDetailsPage(divDetails, tank)
+    })
+
+    run(location.hash.slice(1))
+
+})()
