@@ -1,0 +1,122 @@
+#content {
+    background-color: $content-background;
+    padding: 10px;
+    color: $content-color;
+
+    h1, h2 {
+        color: $titles-color;
+    }
+
+    h1 {
+        text-align: center;
+        text-transform: $h1-text-transform;
+    }
+
+    img {
+        border: 1px solid $titles-color;
+        padding: 2px;
+
+        &.img-left {
+            float: left;
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        &.img-right {
+            float: right;
+            margin-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    div {
+        &.brief {
+            background-color: $brief-background;
+            padding: 1rem;
+            margin-bottom: if($design == 1, 0.5rem, 2em);
+            color: $brief-color;
+
+            @if ($design == 1) {
+                width: 400px;
+                float: left;
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    a {
+        color: $a-color;
+    }
+
+    table {
+        background-color: $table-background;   
+        border-collapse: collapse;
+
+        caption {
+            text-align: right;
+            color: $caption-color;
+        }
+
+        th, td {
+            padding: 0.5rem 1rem;
+        }
+
+        th {
+            color: $caption-color;
+            text-transform: $th-text-transform;
+            background-color: $table-border;
+            text-align: left;
+            font-weight: normal;
+            border: 1px solid $table-border;
+        
+            &:nth-child(-n+2) {
+                border-right: 1px solid #ffffff;
+            }
+        }
+
+        td {
+            border: 0px;
+            border-bottom: 1px solid $table-border;
+        }
+
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        div {
+            label {
+                display: block;
+                color: $label-color;
+                text-transform: $text-transform-uppercase;
+            }
+
+            &.input1 {
+                padding-bottom: 1rem;
+                width: 100%;
+            }
+
+            &.input2 {
+                width: calc((100% - 10px) / 2);
+            }
+
+            input, textarea {
+                border: 1px solid $input-border;
+                width: 100%;
+            }
+        }
+
+        button {
+            width: 200px;
+            color: $button-color;
+            border: 1px solid $button-color;
+            text-align: center;
+            padding: 10px;
+            background-color: inherit;
+            text-transform: $text-transform-uppercase;
+            font-size: 18px;
+        }
+    }
+}

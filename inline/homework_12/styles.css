@@ -1,0 +1,92 @@
+/* Your styles goes here */
+
+body {
+    background-color: #383838;
+    color: white;
+}
+/*
+.tank-details {
+    display: flex;
+    flex-direction: column;
+
+}
+*/
+
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.tank-details > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.left span {
+    display: block;
+}
+
+left img {
+    width: 200px;
+}
+
+table {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid white;
+}
+
+
+.tank {
+    min-width: 100px;
+    max-width: 200px;
+    text-decoration: none;
+}
+
+.tank > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.tank:hover {
+    background-color: silver;
+}
+
+.tank .img-tank {
+    width: 90%;
+}
+
+
+.short-detail {
+    font-size: 12px;
+    color: white;
+    text-transform: uppercase;
+    margin: auto;
+}
+
+.short-detail > * {
+    margin: auto 5px;
+}
+
+
+img.country {
+    width: 12px;
+}
+
+.visible {
+    display: block;
+}
+
+.not-visible {
+    display: none;
+}
+
+[hidden] {
+    display: none !important;
+}
