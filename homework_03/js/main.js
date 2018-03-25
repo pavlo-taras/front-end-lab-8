@@ -1,19 +1,6 @@
 function Company(params) {
     let {name: _name, owner: _owner, maxCompanySize: _maxCount} = params
-/*
-    Object.defineProperties(this, {
-        "name" : {
-            get: function() {
-                console.log('qwerty')
-                return this.name;
-            },
-            set: function(name2) {
-                console.log('---', name2);
-            }
-        }
-    });
-*/
-    
+
     let _logs = []
     this._employees = [];
 
