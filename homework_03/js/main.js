@@ -44,7 +44,8 @@ function Company(params) {
         } else {
             console.log(`Please try to add Employee instance`);
         }
-    },
+    }
+
     this.removeEmployee = function(indexEmployee) {
         let arrRemovedEmployees = this._employees.splice(indexEmployee, 1);
         if (arrRemovedEmployees.length) {
@@ -52,19 +53,24 @@ function Company(params) {
             setHistory(`${removedEmployee.getName()} ends working at ${this.getName()} in ${new Date()}`);
             removedEmployee.fire(this.getName());
         }
-    },
+    }
+
     this.getAvarageSalary = function() {
         return this._employees.reduce((sum, employee) => sum += employee.getSalary(), 0) / this._employees.length;
-    },
+    }
+
     this.getEmployees = function() {
         return this._employees;
-    },
-    this.getFormattedListOfEmployees = function() {
+    }
 
-    },
+    this.getFormattedListOfEmployees = function() {
+        return this._employees.map((employee) => `${employee.getName()} - works in ${this.getName()} ${(new Date()).getTime() - employee.getLastHireTime()} seconds`);
+    }
+
     this.getAvarageAge = function() {
         return this._employees.reduce((sum, employee) => sum += employee.getAge(), 0) / this._employees.length;
-    },
+    }
+
     this.getHistory = function() {
         return _logs.join("\n");
     }
@@ -90,6 +96,10 @@ function Employee(dataEmployee) {
 
     const _setTimeHire = function(time) {
         _timeHire.push(time);
+    }
+
+    this.getLastHireTime = function() {
+        return _timeHire.slice(-1)[0];
     }
 
     this.getName = function() {
