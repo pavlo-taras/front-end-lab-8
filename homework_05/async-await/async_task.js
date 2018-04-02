@@ -26,18 +26,17 @@ const doAsyncMagic = async () => {
 
 doAsyncMagic(); // [true, true, true, true]
 
-/*
+
 async function* rangeGen() {
     for (let i = 1; i <= 15; i++) {
        yield i;
     }
 }
 
-function iterateRange() {
-    return new Promise(function (resolve, reject) {
-        resolve(await rangeGen());
-    });
+const iterateRange = async () => {
+    for await (const item1 of rangeGen()) {
+        console.log(Promise.resolve(item1))
+    }
 }
   
 iterateRange(); // Promise {<resolved>: 120}
-*/
