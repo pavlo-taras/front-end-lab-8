@@ -25,6 +25,6 @@ http.get = async function(url) {
     return await this.request({url});    
 }
 
-http.post = async function (url)     {
-    return await this.request({method: "POST", url});      
+http.post = async function (url, data) {
+    return await this.request({method: "POST", url, body: JSON.stringify(data)});      
 }
