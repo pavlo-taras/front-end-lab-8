@@ -20,14 +20,11 @@ const createBoard = () => {
 const addCircle = ($parent, colorStonePlayer) => {
     let $circle = $(`<span class="circle"></span>`).addClass(colorStonePlayer);
     $parent.append($circle);
-    console.log("parent = ", $parent)
 }
 
 const nextStepPlayer2 = () => {
-    let $cells = $('.cell').filter(() => $(this).find("span.circle") .length == 0);
+    let $cells = $('.cell').filter(function (index) { return $(this).find("span.circle").length == 0 });
     let randomCell = $cells[Math.floor(Math.random() * ($cells.length))];
-
-console.log("randomCell = ", randomCell)
 
     addCircle($(randomCell), colorStonePlayer2);
 }
