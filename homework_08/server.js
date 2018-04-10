@@ -1,10 +1,17 @@
-process.stdout.write('What are you waiting for? \n');
+const express = require('express');
+const bodyParser = require("body-parser");
+const routes = require('./routes');
+const app = express();
 
-var express = require('express');
-var app = express();
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
+app.use(bodyParser.json());
 
-var server = app.listen(3001, function() {
-    var port = server.address().port;
+app.use('/', routes);
+
+let server = app.listen(3000, function() {
+    let port = server.address().port;
     console.log("Express server listening on port %s.", port);
 });

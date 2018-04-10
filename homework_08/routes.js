@@ -1,24 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-router.post('/rockstar', function(req, res) {
-    res.send('POST rockstar!')
-})
+let handler = require("./controllers/handlers");
 
-router.get('/rockstars', function(req, res) {
-    res.send('GET rockstars')
-})
-
-router.get('/rockstar/:id', function(req, res) {
-    res.send(`GET rockstar :id = ${req.params}`)
-})
-
-router.put('/rockstar/:id', function(req, res) {
-    res.send('PUT rockstar :id')
-})
-
-router.delete('/rockstar/:id', function(req, res) {
-    res.send('DELETE rockstar:id')
-})
+router.get('/rockstars', handler.getAll);
+router.get('/rockstar/:id', handler.get);
+router.post('/rockstar', handler.post);
+router.put('/rockstar/:id', handler.put);
+router.delete('/rockstar/:id', handler.delete);    
 
 module.exports = router;
