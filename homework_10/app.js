@@ -1,10 +1,13 @@
 function AddRequiredValidation(fn) {
     return function (...args) {
         let value = args[0];
-        
-        this.valid = value.length || typeof value !== "undefined";
 
-        if (!this.valid) return;
+        this.valid =  !(typeof value === "undefined" || value.length == 0);
+
+        if (!this.valid) {
+            this.errorMessage = "Iinput value is an empty string or undefined";
+            return; 
+        }
 
         return fn.apply(this, args);
     }    
@@ -14,21 +17,27 @@ function AddNumberValidation(fn) {
     return function (...args) {
         let value = args[0];
 
-        this.valid = typeof value !== "number";
-
-        if (!this.valid) return;
+        this.valid = typeof value === "number";
+        if (!this.valid) {
+            this.errorMessage = "Input value is not of type 'number'";
+            return;
+        }
 
         return fn.apply(this, args);
     }
 }
 
-function AddMaxLengthValidation(target, len) {
+function AddMaxLengthValidation(fn, len) {
     return function (...args) {
+        
         let value = args[0];
 
-        this.valid = typeof value === "number" && value.toString().length == len;
+        this.valid = typeof value === "number" && value.toString().length <= len;
 
-        if (!this.valid) return;
+        if (!this.valid) {
+            this.errorMessage = "Input value length bigger then maxLength parameter provided to the decorator";
+            return;
+        }
 
         return fn.apply(this, args);
     }
@@ -53,11 +62,9 @@ class Input {
     }
 }
 
-Object.defineProperty(Input.prototype, 'setValue', { value: AddRequiredValidation(Input.prototype.setValue)});
-Object.defineProperty(Input.prototype, 'setValue', { value: AddNumberValidation(Input.prototype.setValue)});
-Object.defineProperty(Input.prototype, 'setValue', { value: AddMaxLengthValidation(Input.prototype.setValue, 5)});
-
-Object.defineProperty(Input.prototype, 'setValue', { set: () => "Hello world"});
+Object.defineProperty(Input.prototype, 'setValue', {
+    value: AddRequiredValidation(AddNumberValidation(AddMaxLengthValidation(Input.prototype.setValue, 5)))
+});
 
 class NumberInput extends Input {
     constructor(placeHolder){
@@ -76,7 +83,7 @@ let numberInput = new NumberInput("Type numbers...");
 
 // The desired behaviour would be
 console.log(numberInput)
-numberInput.setValue("");
+numberInput.setValue();
 console.log(numberInput.valid) //---> false, because of required validator
 numberInput.setValue("1");
 console.log(numberInput.valid) // ---> false, because of number validator
