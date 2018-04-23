@@ -20,10 +20,11 @@ module.exports = {
     ],
     module: {
 		rules: [
-			{
-				test: /\.css$/,
-				use: ["style-loader", "css-loader"]
+            {
+                test: /\.css$/,
+                include: __dirname + 'src/styles/',
+                use: ['style-loader', 'css-loader']
             }
         ]
-	}
+    }
 }
