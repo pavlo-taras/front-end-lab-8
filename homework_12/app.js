@@ -148,6 +148,9 @@ const scoresView = {
             let currentName = $(listView.$container.find('li')[currentIndex]).text();
             let indexInModel = control.getAllNames().indexOf(currentName);
 
+            if (indexInModel < 0) {
+                return false;
+            }
             if (!$currentInput.is('.hidden')) {
                 return false;
             }
