@@ -74,6 +74,9 @@ const control = {
         scoresView.render();
 
         profileView.init();
+
+        sortView.init();
+        sortView.render();
     },
     getAllNames: function() {
         return model.allPersons.map(el=>el.name);
@@ -95,6 +98,8 @@ const control = {
         model.currentPerson.score = value;
         profileView.render();
         scoresView.render();
+        listView.render();
+        sortView.removeSortingClasses();
     }
 };
 
@@ -139,16 +144,25 @@ const scoresView = {
             let $currentSpan = $currentLi.find('span');
             let $currentInput = $currentLi.find('input.score-input');
             let currentIndex = $currentLi.index();
+            // Hack for sorting
+            let currentName = $(listView.$container.find('li')[currentIndex]).text();
+            let indexInModel = control.getAllNames().indexOf(currentName);
+
             if (!$currentInput.is('.hidden')) {
                 return false;
             }
-            control.setCurrentPerson(currentIndex);
+            control.setCurrentPerson(indexInModel);
             $currentSpan.addClass('hidden');
             $currentInput.removeClass('hidden').focus();
         });
         this.$container.on('focusout .score-input', function(e) {
-            let newScore = $(e.target).val();
-            control.setCurrentPersonScore(newScore);
+            let $currentInput = $(e.target);            
+            let $currentLi = $currentInput.parents('li'); 
+            let $currentSpan = $currentLi.find('span');
+            let newScore = $currentInput.val();
+            $currentSpan.removeClass('hidden');
+            $currentInput.addClass('hidden');
+            control.setCurrentPersonScore(parseInt(newScore));            
         });
     }
 };
@@ -165,6 +179,82 @@ const profileView = {
             <p>Score:${currentPerson.score}</p>
         `
         this.$container.html(template);
+    }
+};
+
+const sortView = {
+    init: function() {
+        this.$container = $('.sort-controls');
+        this.handleClicks();
+    },
+    render: function() {
+        this.$container.html(
+            `<li class="sort-names"><a href="#" class="sort-by sort-by-default">Name</a></li>
+            <li class="sort-scores"><a href="#" class="sort-by sort-by-default">Score</a></li>`);
+    },
+    handleClicks: function() {
+        let self = this;
+
+        this.$container.on('click','li a', function(e) {
+
+            let $sortElement = $(e.target);
+
+            let orderUp = $sortElement.hasClass('sort-by-up');
+
+            self.removeSortingClasses();
+
+            $sortElement.addClass((!orderUp) ? 'sort-by-up' : 'sort-by-down');
+
+            let $parentList1 = listView.$container;
+            let $parentList2 = scoresView.$container;
+
+            let isInput = $sortElement.parent().hasClass('sort-scores');
+
+            if (isInput) {
+                [$parentList1, $parentList2] = [$parentList2, $parentList1]
+            }
+
+            self.sortList($parentList1, $parentList2, orderUp, isInput);
+        });
+    },
+    removeSortingClasses: function() {
+        this.$container.find('li a').each(function(index, value) {
+            $(value).removeClass('sort-by-down').removeClass('sort-by-up').addClass('sort-by-default');
+        });
+    },
+    sortList: function(parent1, parent2, orderUp = true, isInput = true) {
+        let listParent1 = parent1.find('li');
+    
+        let sortedListParent1 = isInput 
+            ? this.sortIntegerValue(parent1.children('li'), orderUp)
+            : this.sortStringValue(parent1.children('li'), orderUp);
+        parent1.append(sortedListParent1);
+    
+        let listParent2 = parent2.find('li');
+        let sortedListParent2 = [];
+    
+        listParent1.each(function(index, value) {
+            sortedListParent2[$(value).index()] = listParent2[index];
+        });
+    
+        parent2.append(sortedListParent2);
+    },
+    sortStringValue: function(list, orderUp) {
+        return list.sort(function(a, b) {
+            let vA = $(a).text();
+            let vB = $(b).text();
+            let result = orderUp 
+                ? ((vA < vB) ? -1 : (vA > vB) ? 1 : 0)
+                : (vA > vB) ? -1 : (vA < vB) ? 1 : 0;
+            return result;
+        });
+    },
+    sortIntegerValue: function(list, orderUp) {
+        return list.sort(function(a, b) {
+            let vA = parseInt($(a).text());
+            let vB = parseInt($(b).text());
+            return orderUp ? (vA - vB) : (vB - vA);
+        });
     }
 };
 
