@@ -66,7 +66,7 @@ class Panel extends React.Component {
       activity => {
         return (new RegExp(searchValue)).test(activity.color) || activity.tags.some(tag => (new RegExp(searchValue)).test(tag))
       }
-    ).sort((a, b) => b.color - a.color)
+    )
 
     this.setState({ selects: selects })
   }
