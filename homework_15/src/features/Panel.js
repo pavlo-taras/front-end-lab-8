@@ -22,9 +22,9 @@ class Panel extends React.Component {
         .then(data => data.json())
         .then(data => {
           this.setState({
-            activities: data,
-            selects: data
+            activities: data
           })
+          this.selectData();
       })
       .catch(error => {
         console.log(error)
@@ -66,7 +66,7 @@ class Panel extends React.Component {
       activity => {
         return (new RegExp(searchValue)).test(activity.color) || activity.tags.some(tag => (new RegExp(searchValue)).test(tag))
       }
-    )
+    ).sort((a, b) => a.id - b.id)
 
     this.setState({ selects: selects })
   }
@@ -83,6 +83,7 @@ class Panel extends React.Component {
         <Content
           selects={this.state.selects}
           cntSelects={this.state.selects.length}
+          disabledAddButton={this.state.availables.length >= 10}
           moveColor={this.moveColor}
         />
       </div>

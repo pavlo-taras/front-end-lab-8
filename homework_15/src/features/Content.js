@@ -12,7 +12,13 @@ class Content extends React.Component {
           {this.props.cntSelects == 0 && <p className="any-selected">There are no colors found</p>}
           {this.props.selects.map((selected, i) => {
             return (
-              <ColorItem type="selected" key={i} selected={selected} moveColor={this.props.moveColor}/>
+              <ColorItem
+                type="selected"
+                key={i}
+                selected={selected}
+                moveColor={this.props.moveColor}
+                disabledAddButton={this.props.disabledAddButton}
+              />
             )
           })}
         </div>
