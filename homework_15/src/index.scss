@@ -84,6 +84,7 @@
 .availables {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
 }
 
 .no-availabled {
