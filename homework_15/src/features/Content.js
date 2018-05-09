@@ -9,7 +9,10 @@ class Content extends React.Component {
     render () {
       return (
         <div className='content'>
-          {this.props.cntSelects == 0 && <p className="any-selected">There are no colors found</p>}
+          {this.props.loading
+            ? <p className="any-selected">Loading...</p>
+            : this.props.cntSelects == 0 && <p className="any-selected">There are no colors found</p>
+          }
           {this.props.selects.map((selected, i) => {
             return (
               <ColorItem

@@ -7,6 +7,7 @@ class Panel extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      loading: false,
       activities: [],
       selects: [],
       availables: []
@@ -17,6 +18,7 @@ class Panel extends React.Component {
   }
 
   componentDidMount() {
+      this.setState({ loading: true });
 
       fetch("https://epam-fe-homework-15.firebaseio.com/colors.json")
         .then(data => data.json())
@@ -25,6 +27,7 @@ class Panel extends React.Component {
             activities: data
           })
           this.selectData();
+          this.setState({ loading: false });
       })
       .catch(error => {
         console.log(error)
@@ -35,8 +38,7 @@ class Panel extends React.Component {
 
   handleSearch (event) {
     this.setState({
-      searchValue: event.target.value,
-      loading: true
+      searchValue: event.target.value
     }, () => { this.selectData() })
   }
 
@@ -85,6 +87,7 @@ class Panel extends React.Component {
           cntSelects={this.state.selects.length}
           disabledAddButton={this.state.availables.length >= 10}
           moveColor={this.moveColor}
+          loading={this.state.loading}
         />
       </div>
     )
