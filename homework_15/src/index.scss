@@ -27,7 +27,7 @@
 
 .content {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly ;
     flex-wrap: wrap;
 }
 
@@ -84,6 +84,7 @@
 .availables {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
 }
 
 .no-availabled {
@@ -108,55 +109,3 @@
         margin-right: -20px;
     }
 }
-
-
-
-/*
-        &.light-violet {
-            border: 2px solid $light-violet;
-        }
-
-        &.light-blue {
-            border: 2px solid $light-blue;
-        }
-
-        &.violet {
-            border: 2px solid $violet;
-        }
-
-        &:nth-child(n+1) {
-            margin-left: -20px;
-        }
-    }
-
-    .selected {
-        float: left;
-        width: 40px;
-        height: 40px;
-        border-radius: 5px;
-        position: relative;
-
-        &:nth-child(n+1) {
-            margin-left: -10px;
-        }
-
-        .deleteButton {
-            position: absolute;
-            top: -6px;
-            left: -6px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: $red;
-            text-align: center;
-
-            & > i {
-                vertical-align:middle;
-                font-size: 14px;
-                margin-bottom: 9.5px;
-                color: $white;
-            }
-        }
-    }
-}
-*/
