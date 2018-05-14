@@ -9,6 +9,7 @@ app.controller('postController', function($scope) {
 
     $scope.selectTab = function(setTab){
         $scope.tab = setTab;
+        $scope.query.title = "";
     };
     
     $scope.isSelected = function(checkTab){            
