@@ -1,0 +1,27 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns; first as isFirst;">{{isFirst ? "#" : column}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr 
+        *ngFor="let topic of topics"
+        app-class [topic]="topic"
+        [columns]="columns">
+      </tr>
+      
+      <tr *ngIf="topicForm">
+        <td><input type="text" name="id" [(ngModel)]="newTopic.id" /></td>
+        <td><input type="text" name="topic" [(ngModel)]="newTopic.topic" /></td>
+        <td><input type="text" name="lecturer" [(ngModel)]="newTopic.lecturer" /></td>
+        <td><input type="text" name="date" [(ngModel)]="newTopic.date" /></td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="saveTopic(newTopic)">Submit</button>
+          <button type="button" class="btn btn-warning" (click)="cancelNewTopic()">Cancel</button>
+        </td>
+    </tbody>
+  </table>
+  <button (click)="showAddTopicForm()">Add</button>
+</div>

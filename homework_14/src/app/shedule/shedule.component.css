@@ -1,0 +1,11 @@
+table {
+    /*display: flex;
+    justify-items: center;*/
+    /*border: 1px solid #000;*/
+    border-collapse: collapse;
+}
+
+th, td {
+    flex: 1;
+    border: 1px solid #000;
+}

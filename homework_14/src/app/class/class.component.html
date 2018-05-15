@@ -1,0 +1,16 @@
+<td *ngFor="let col of columns; last as isLast">
+  <div *ngIf="!editTopicForm && isLast" class="component-tag-sm">
+    <button (click)="showEditTopicForm(topic)">Edit</button>
+    <button (click)="removeTopic()">Remove</button>
+  </div>
+  <div *ngIf="!editTopicForm && !isLast" class="component-tag-sm" [attr.name]="topic[col]">
+      {{topic[col]}}
+  </div>
+  <div *ngIf="editTopicForm && !isLast">
+    <input type="text" [attr.name]="topic[col]" [(ngModel)]="editedTopic[col]" />
+  </div>
+  <div *ngIf="editTopicForm && isLast" class="component-tag-sm">
+    <button type="button" class="btn btn-primary" (click)="updateTopic(editedTopic)">Submit</button>
+    <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+  </div>
+</td>
